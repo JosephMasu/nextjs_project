@@ -55,7 +55,7 @@ export default function Login() {
           </button>
           <Link 
             className="w-full p-2 text-center relative hover:text-white ml-2 group"
-            href='/login'>
+            href='/signup'>
             Visit singup page
             <span className="absolute left-0 right-0 bottom-5 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
