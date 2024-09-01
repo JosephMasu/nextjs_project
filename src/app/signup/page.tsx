@@ -13,7 +13,6 @@ export default function SignUp() {
   });
 
   const OnSignup = async () => {
-    // Signup logic goes here
   };
 
   return (
