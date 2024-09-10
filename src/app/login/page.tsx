@@ -17,6 +17,9 @@ export default function Login() {
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
+  const openSignup = () => {
+    router.push('/signup');
+  };
   const OnLogin = async () => {
     try {
       setLoading(true);
@@ -42,8 +45,8 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 text-white">
-      <h1>{loading ? "Processing" : "Login"}</h1>
-      <hr className="w-full my-4 border-gray-400" />
+      <h1 className="text-2xl font-semibold mb-4 text-white">{loading ? "Processing" : "Login"}</h1>
+      {/* <hr className="w-full my-4 border-gray-400" /> */}
       
       <div className="w-full max-w-xs">
         
@@ -72,19 +75,19 @@ export default function Login() {
           placeholder="Password"
         />
         
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-4">
           <button 
             onClick={OnLogin}
-            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-t-gray-500 hover:bg-gray-500 hover:text-gray-950 mr-2">
+            className="w-full py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-t-gray-500 hover:bg-gray-500 hover:text-gray-950 mr-2">
             Login
           </button>
-          <Link 
-            className="w-full p-2 text-center relative hover:text-white ml-2 group"
-            href='/signup'>
-            Visit singup page
-            <span className="absolute left-0 right-0 bottom-5 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-          </Link>
+          <button 
+            onClick={openSignup}
+            className="w-full py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-t-gray-500 hover:bg-gray-500 hover:text-gray-950">
+            Register
+          </button>  
         </div>
+        
       </div>
     </div>
   );

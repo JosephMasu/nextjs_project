@@ -1,52 +1,63 @@
-
 "use client";
 import axios from "axios";
 import Link from "next/link";
-import React, {useState} from "react";
-import {toast} from "react-hot-toast";
-import {useRouter} from "next/navigation";
-
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-    const router = useRouter()
-    const [data, setData] = useState("nothing")
+    const router = useRouter();
+    const router1 = useRouter();
+    const [data, setData] = useState("nothing");
+
     const logout = async () => {
         try {
-            await axios.get('/api/users/logout')
-            toast.success('Logout successful')
-            router.push('/login')
+            await axios.get('/api/users/logout');
+            toast.success('Logout successful');
+            router.push('/login');
         } catch (error:any) {
             console.log(error.message);
-            toast.error(error.message)
+            toast.error(error.message);
         }
-    }
+    };
+
+    const openResetPassword = () => {
+        router1.push('/resetpassword');
+      };
 
     const getUserDetails = async () => {
-        const res = await axios.get('/api/users/me')
+        const res = await axios.get('/api/users/me');
         console.log(res.data);
-        setData(res.data.data._id)
-    }
+        setData(res.data.data.username);
+    };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-white ml-4">Profile</h1>
-            <hr />
-            <p className="text-white ml-4">Profile page</p>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-black py-8 px-4">
+            <div className="bg-black p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h1 className="text-3xl font-semibold text-white text-center mb-4">Profile</h1>
+                <p className="text-white text-center mb-6">Welcome to your profile page. Here you can view your details, logout and Reset Password</p>
 
-            <h2 className="p-1 rounded bg-green-500 mt-5">{data === 'nothing' ? "Nothing" : <Link href={`/profile/${data}`}>{data}
-            </Link>}</h2>
-        <hr />
-        <button
-        onClick={logout}
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >Logout</button>
+                <h2 className="text-xl font-medium bg-gray-500 text-white p-3 rounded-lg text-center mb-6">
+                    {data === 'nothing' ? "No User Data" : <Link href={`/profile/${data}`} className="hover:underline">{data}</Link>}
+                </h2>
 
-        <button
-        onClick={getUserDetails}
-        className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >GetUser Details</button>
+                <div className="flex flex-col gap-4">
+                    <button
+                        onClick={logout}
+                        className="w-full text-white p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-t-gray-500 hover:bg-gray-500 hover:text-gray-950 mr-2"
+                    >
+                        Logout
+                    </button>
 
-
+                    <button
+                        onClick={getUserDetails}
+                        className="w-full text-white p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-t-gray-500 hover:bg-gray-500 hover:text-gray-950 mr-2"
+                    >
+                        Get User Details
+                    </button>
+                    
+                </div>
             </div>
-    )
+        </div>
+    );
 }
