@@ -45,9 +45,9 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 text-white">
-      <h1>{loading ? "Processing" : "Signup"}</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-white">{loading ? "Processing" : "Signup"}</h1>
       <hr />
-      <hr className="w-full my-4 border-gray-400" />
+      {/* <hr className="w-full my-4 border-gray-400" /> */}
       
       <div className="w-full max-w-xs">
         <label htmlFor="username" className="block text-left mb-2">
