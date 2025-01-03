@@ -5,15 +5,18 @@ const UserSchema = new mongoose.Schema({
         required:[true, 'please provide a username'],
         unique: true,
     },
+    
     email:{
         type: String,
         required:[true, 'please provide an email'],
         unique: true,
     },
+    
     password:{
         type: String,
         required:[true, 'please provide a password'],
     },
+    
     isVerified:{
         type: Boolean,
         default: false,
